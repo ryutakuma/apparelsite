@@ -1,0 +1,42 @@
+version: '3'
+
+volumes:
+    mysql_data:
+    django_cache:
+
+services:
+  db:
+    build: ./infra/docker/mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3308:3306
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: ./infra/docker/python
+    tty: true
+    volumes:
+      - ./src:/code
+      - django_cache:/code/app/__pycache__
+    restart: always
+    ports:
+      - 8080:8000
+    depends_on:
+      db:
+        condition: service_healthy
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=django
+      - PMA_PASSWORD=secret
+    ports:
+      - 8888:80
+    depends_on:
+      - db
