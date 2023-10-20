@@ -19,4 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('search/', include('search.urls')),
+    path('shopping/', include('shopping.urls')),
+    
 ]
