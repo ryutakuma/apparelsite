@@ -22,7 +22,7 @@ import os
 # Create your views here.
 def index(request):
     ## ランキングここからーーーーー
-    search_data = rakutenApi('rankingのURL',{})
+    search_data = rakutenApi('rankingのURL')
     ## ランキングここからーーーーー
     return render(request, 'top.html', {'keyword': ""})
 
