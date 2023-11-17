@@ -21,10 +21,18 @@ import os
 
 # Create your views here.
 def index(request):
-    ## ランキングここからーーーーー
-    search_data = rakutenApi('rankingのURL')
-    ## ランキングここからーーーーー
-    return render(request, 'top.html', {'keyword': ""})
+    ## ここからーーーーー
+    keyword = request.POST.get('keyword', '')
+    api_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706'
+    app_id = os.getenv('RAKUTEN_API_KEY')
+    params = {
+      'format': 'json',
+      'keyword': keyword,
+      'applicationId': app_id,
+    }
+    response = requests.get(api_url, params=params)
+    search_data = response.json()
+    ## ここまでーーーーー
 
 def result(request):
   if request.method == 'POST':
