@@ -1,4 +1,7 @@
 from django.shortcuts import render
+import requests
+from dotenv import load_dotenv
+import os
 
 def rakutenApi(url, params):
     keyword = request.POST.get('keyword', '')
@@ -14,10 +17,7 @@ def rakutenApi(url, params):
 
 # Create your views here.
 def index(request):
-    from django.shortcuts import render
-import requests
-from dotenv import load_dotenv
-import os
+ 
 
 # Create your views here.
 def index(request):
@@ -36,7 +36,7 @@ def index(request):
 
 
 def result(request):
-
+  if request.method == 'POST':
 
     items = data['Items']
   else:
