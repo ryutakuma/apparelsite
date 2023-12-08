@@ -21,7 +21,23 @@ def index(request):
 
 # Create your views here.
 def index(request):
-    ## ここからーーーーー
+  ## ここからーーーーー
+  keyword = request.POST.get('keyword', '')//ユーザーが書き込みするときはデータを受け取るから書く
+  api_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706'
+  app_id = os.getenv('RAKUTEN_API_KEY')
+  params = {
+    'format': 'json',
+    'keyword': keyword,
+    'applicationId': app_id,
+  }
+  response = requests.get(api_url, params=params)
+  search_data = response.json()
+  ## ここまでーーーーー 
+
+  return render(request, 'top.html')
+
+def result(request):
+  if request.method == 'POST':
     keyword = request.POST.get('keyword', '')//ユーザーが書き込みするときはデータを受け取るから書く
     api_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706'
     app_id = os.getenv('RAKUTEN_API_KEY')
@@ -32,25 +48,9 @@ def index(request):
     }
     response = requests.get(api_url, params=params)
     search_data = response.json()
-    ## ここまでーーーーー
 
-
-def result(request):
-  if request.method == 'POST':
-
-    items = data['Items']
+    items = search_data['Items']
   else:
     items = []
     keyword = ""
   return render(request, 'top.html', {'items': items, 'keyword': keyword})
-
-
-
-
-
-
-
-
-
-
-    return render(request, "top.html")
