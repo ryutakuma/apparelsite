@@ -88,3 +88,16 @@ def index(request):
   print(Ranking_data)
 
   return render(request, 'top.html', {'Ranking_data': Ranking_data})
+
+  def index(request):
+  ## ここからーーーーー
+  janru = request.POST.get('janru', '') #ユーザーが書き込みするときはデータを受け取るから書く
+  # Ranking_data = response.json()
+  Ranking_data = rakutenApi('https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222?', {
+    'format': 'json',
+    'genreId': janru,
+  })
+  ## ここまでーーーーー 
+  print(janru['brothers'])
+
+  return render(request, 'top.html', {'Ranking_data': Ranking_data})
