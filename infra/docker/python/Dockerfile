@@ -32,6 +32,8 @@ RUN pip install -r requirements.txt
 RUN pip install PyMySQL
 RUN pip install djangorestframework
 RUN pip install cryptography
+RUN pip install requests
+RUN pip install load_dotenv
 
 ENV DJANGO_SETTINGS_MODULE=app.settings.localhost
 

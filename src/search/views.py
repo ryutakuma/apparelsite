@@ -49,7 +49,6 @@ def index(request):
 
   return render(request, 'top.html', {'Ranking_data': Ranking_data})
 
-  def index(request):
   ## ここからーーーーー
   janru = request.POST.get('janru', '') #ユーザーが書き込みするときはデータを受け取るから書く
   # Ranking_data = response.json()
