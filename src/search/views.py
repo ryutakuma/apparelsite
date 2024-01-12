@@ -96,4 +96,6 @@ def index(request):
   ## ここまでーーーーー 
   print(janru['brothers'])
 
-  return render(request, 'top.html', {'Ranking_data': Ranking_data})
+  return render(request, 'top.html', {
+    'Ranking_data': Ranking_data
+  })
