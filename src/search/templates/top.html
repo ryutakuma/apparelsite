@@ -6,6 +6,15 @@
     <title>Bootstrap demo</title>
   </head>
   <body>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand">ショッピング</a>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">検索</button>
+        </form>
+      </div>
+    </nav>
     <h1> pythonでタイトルをもらう</h1>
     条件
     検索フォームを出す
@@ -28,5 +37,15 @@
     {%- endfor %}
 
     カードでの検索結果の一覧を出す
+    {%- for i in range( keyword|length) %}
+    <div class="card" style="width: 18rem;">
+      <img src="****アイテムの画像****" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">****結果****</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    {%- endfor %}
   </body>
   

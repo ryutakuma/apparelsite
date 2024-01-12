@@ -35,42 +35,6 @@ def index(request):
 
   return render(request, 'top.html')
 
-# def result(request):
-#   if request.method == 'POST':
-#     keyword = request.POST.get('keyword', '')#ユーザーが書き込みするときはデータを受け取るから書く
-#     api_url = 'https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch'
-#     app_id = os.getenv('YAHOO_API_KEY')
-#     params = {
-#       'format': 'json',
-#       'keyword': keyword,
-#       'applicationId': app_id,
-#     }
-#     response = requests.get(api_url, params=params)
-#     search_data = response.json()
-
-#     items = search_data['Items']
-#   else:
-#     items = []
-#     keyword = ""
-#   return render(request, 'top.html', {'items': items, 'keyword': keyword}) 
-
-# def index(request):
-#   ## ここからーーーーー
-#   keyword = request.POST.get('keyword', '')//ユーザーが書き込みするときはデータを受け取るから書く
-#   api_url = 'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706'
-#   app_id = os.getenv('RAKUTEN_API_KEY')
-#   params = {
-#     'format': 'json',
-#     'keyword': keyword,
-#     'applicationId': app_id,
-#     'keyword': '',
-#   }
-#   response = requests.get(api_url, params=params)
-#   search_data = response.json()
-#   ## ここまでーーーーー 
-
-#   return render(request, 'top.html')
- 
 
 def index(request):
   ## ここからーーーーー
