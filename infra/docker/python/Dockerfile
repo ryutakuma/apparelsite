@@ -34,6 +34,7 @@ RUN pip install djangorestframework
 RUN pip install cryptography
 RUN pip install requests
 RUN pip install load_dotenv
+RUN pip install django-environ
 
 ENV DJANGO_SETTINGS_MODULE=app.settings.localhost
 

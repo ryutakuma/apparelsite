@@ -1,0 +1,12 @@
+#ranking .card .card-title {
+    height: 20px;
+    overflow: auto;
+}
+#ranking .card .card-text {
+    height: 200px;
+    overflow: auto;
+}
+#ranking .card .itemName {
+    font-weight: 80px;
+    overflow: auto;
+}

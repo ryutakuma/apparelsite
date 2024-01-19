@@ -4,24 +4,30 @@ from dotenv import load_dotenv
 import os
 
 def rakutenApi(url, params):
-    app_id = os.getenv('RAKUTEN_API_KEY')
-    params['applicationId'] = app_id
-    response = requests.get(url, params=params)
-    search_data = response.json()
-    return search_data
+  ## ApplicationIDを取得するためのコード
+  load_dotenv()
+
+  app_id = os.getenv('RAKUTEN_API_KEY')
+  params['applicationId'] = app_id
+  response = requests.get(url, params=params)
+  search_data = response.json()
+  return search_data
 
 def yahooApi(url, params):
-    app_id = os.getenv('YAHOO_API_KEY')
-    params['applicationId'] = app_id
-    response = requests.get(url, params=params)
-    search_data = response.json()
-    return search_data
+  ## ApplicationIDを取得するためのコード
+  load_dotenv()
+
+  app_id = os.getenv('YAHOO_API_KEY')
+  params['applicationId'] = app_id
+  response = requests.get(url, params=params)
+  search_data = response.json()
+  return search_data
 
 
 # Create your views here.
 def index(request):
   ## ここからーーーーー
-  keyword = request.POST.get('keyword', '')//ユーザーが書き込みするときはデータを受け取るから書く
+  keyword = request.POST.get('keyword', '') #ユーザーが書き込みするときはデータを受け取るから書く
   api_url = 'https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch'
   app_id = os.getenv('YAHOO_API_KEY')
   params = {
@@ -45,9 +51,11 @@ def index(request):
     'keyword': Ranking,
   })
   ## ここまでーーーーー 
-  print(Ranking_data)
+  print(Ranking_data['Items'][0])
 
-  return render(request, 'top.html', {'Ranking_data': Ranking_data})
+  return render(request, 'top.html', {
+    'Ranking_data': Ranking_data['Items']
+  })
 
   ## ここからーーーーー
   janru = request.POST.get('janru', '') #ユーザーが書き込みするときはデータを受け取るから書く

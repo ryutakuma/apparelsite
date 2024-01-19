@@ -1,3 +1,4 @@
+{% load static %}
 
 <!doctype html>
 <html lang="en">
@@ -6,46 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="{% static "style.css" %}" rel="stylesheet">
   </head>
   <body>
     <nav id="top" class="navbar bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand">ショッピング</a>
+        <a class="navbar-brand">ショッピングサイト</a>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">検索</button>
+          <button class="btn btn-outline-success" type="submit">搜索</button>
         </form>
       </div>
     </nav>
-    <h1> pythonでタイトルをもらう</h1>
+    <h1> </h1>
     条件
     検索フォームを出す
 
     {% if Ranking_data %}
-    <section id="ranking">
-      <h2>ランキング</h2>
-      //
+    <section id="ranking" class="container-sm" style="background-color: rgb(82, 105, 111);;">
+      <h2 class="text-center">ランキング</h2>
+
+      <div class="row">
+        {% for item in Ranking_data %}
+        <div class="card col-3">
+          <img src="{{ item.Item.smallImageUrls.0.imageUrl }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.Item.itemName }}</h5>
+            <p class="card-text">{{ item.Item.itemCaption }}</p>
+
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </section>
     {% endif %}
 
-
-    {% for item in Ranking_data %}
-    <div class="card" style="width: 18rem;">
-      <img src="****アイテムの画像****" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">****アイテムの名前****</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-    {% endfor %}
+   
 
     カードでの検索結果の一覧を出す
     {% for item in keyword %}
-    <div class="card" style="width: 18rem;">
-      <img src="****アイテムの画像****" class="card-img-top" alt="...">
+    <div class="card" style="width: 50rem;">
+      <img src="imageFlag" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">****結果****</h5>
+        <h5 class="card-title">{{ item.Item.itemCode }}</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
@@ -54,7 +59,7 @@
 
     <!-- TOPに戻る -->
     <div class="position-fixed" style="bottom: 10dvh; right: 10dvw;">
-      <a class="btn btn-primary rounded-circle" href="#top">戻る</a>
+      <a class="btn btn-primary rounded-circle" href="#top">返回</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
