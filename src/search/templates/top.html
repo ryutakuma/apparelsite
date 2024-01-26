@@ -13,7 +13,7 @@
     <nav id="top" class="navbar bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand">楽天モドキ</a>
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" action="result#result">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">搜索</button>
         </form>
@@ -34,7 +34,7 @@
             <h5 class="card-title">{{ item.Item.itemName }}</h5>
             <!-- <p class="card-text">{{ item.Item.itemCaption }}</p> -->
 
-            <a href="itemurl" class="btn btn-primary">こちら</a>
+            <a href="{{item.Item.itemUrl}}" target="_blank" class="btn btn-primary">こちら</a>
           </div>
         </div>
         {% endfor %}
@@ -51,7 +51,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ item.Item.itemCode }}</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <a href="itemurl" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
     {% endfor %}
