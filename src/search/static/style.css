@@ -1,3 +1,7 @@
+#ranking {
+    background-color: rgb(150, 89, 27);
+    padding-bottom: 1em;
+}
 #ranking .card .card-title {
     height: 120px;
     font-size: "7";
@@ -7,4 +11,18 @@
 #ranking .card .card-text {
     height: 200px;
     overflow: auto;
+}
+#result_item_list{
+    height: 75vh;
+    overflow: auto;
+}
+#result {
+    background-color: rgb(108, 21, 99);
+    padding-bottom: 1em;
+}
+#result .card .card-title {
+    height: 120px;
+    font-size: "7";
+    overflow: auto;
+    color:black;
 }

@@ -23,7 +23,7 @@
     
 
     {% if Ranking_data %}
-    <section id="ranking" class="container-sm" style="background-color: rgb(150, 89, 27);;">
+    <section id="ranking" class="container-sm">
       <h2 class="text-center">ランキング</h2>
       <div id="result_item_list">
       <div class="row">
@@ -43,11 +43,10 @@
     {% endif %}
 
    
-
-    カードでの検索結果の一覧を出す
+    <nav id="searched" class="navbar bg-body-tertiary">
     {% if result %}
-    <section id="result" class="container-sm" style="background-color: rgb(150, 89, 27);;">
-      <h2 class="text-center">検索結果</h2>
+    <section id="result" class="container-sm">
+      <h2 class="text-center">検索結果</h2> 
         <div class="row">
           {% for item in result %}
           <div class="card col-3">
@@ -64,8 +63,7 @@
         </div>
     </section>
     {% endif %}
-  
-    <nav id="searched" class="navbar bg-body-tertiary">
+
     <!-- TOPに戻る -->
     <div class="position-fixed" style="bottom: 10dvh; right: 10dvw;">
       <a class="btn btn-primary rounded-circle" href="#top">返回</a>
