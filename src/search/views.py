@@ -25,21 +25,32 @@ def yahooApi(url, params):
 
 
 # Create your views here.
-def index(request):
+def result(request):
+  ## HTMLに渡す変数群
+  viewDatas = {}
+
   ## ここからーーーーー
-  keyword = request.POST.get('keyword', '') #ユーザーが書き込みするときはデータを受け取るから書く
-  api_url = 'https://shopping.yahooapis.jp/ShoppingWebService/V3/itemSearch'
-  app_id = os.getenv('YAHOO_API_KEY')
-  params = {
+  Ranking = request.POST.get('Ranking', '') #ユーザーが書き込みするときはデータを受け取るから書く
+  # Ranking_data = response.json()
+  Ranking_data = rakutenApi('https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20220601?', {
     'format': 'json',
-    'keyword': keyword,
-    'applicationId': app_id,
-  }
-  response = requests.get(api_url, params=params)
-  search_data = response.json()
+    'keyword': Ranking,
+  })
+  viewDatas['Ranking_data'] = Ranking_data['Items']
   ## ここまでーーーーー 
 
-  return render(request, 'top.html')
+  ## ここからーーーーー
+  keyword = request.GET.get('keyword', '') #ユーザーが書き込みするときはデータを受け取るから書く
+  if len(keyword) != 0:
+    result = rakutenApi('https://app.rakuten.co.jp/services/api/IchibaItem/Search/20220601?', {
+      'format': 'json',
+      'keyword': keyword,
+    })
+    viewDatas['result'] = result['Items']
+    print(result['Items'][0])
+  ## ここまでーーーーー 
+
+  return render(request, 'top.html', viewDatas)
 
 
 def index(request):
@@ -51,22 +62,7 @@ def index(request):
     'keyword': Ranking,
   })
   ## ここまでーーーーー 
-  print(Ranking_data['Items'][0])
 
   return render(request, 'top.html', {
     'Ranking_data': Ranking_data['Items']
-  })
-
-  ## ここからーーーーー
-  janru = request.POST.get('janru', '') #ユーザーが書き込みするときはデータを受け取るから書く
-  # Ranking_data = response.json()
-  janru_data = rakutenApi('https://app.rakuten.co.jp/services/api/IchibaGenre/Search/20140222?', {
-    'format': 'json',
-    'genreId': janru,
-  })
-  ## ここまでーーーーー 
-  print(janru['brothers'])
-
-  return render(request, 'top.html', {
-    'Ranking_data': Ranking_data
   })
